@@ -36,7 +36,6 @@
     transform: rotate(360deg);
   }
 }
-
 .edit-container{
     position: fixed;
     z-index: 1;
@@ -51,8 +50,15 @@
 
 }
 .edit{
-    border-radius: 6px;
+    border-radius: 7px;
     padding: 2rem;
     background-color: white;
-    width: 25em;
+    width: 24.5em;
+    height: 16em;
+}
+.close-edit{
+  position:relative;
+  /* align-items: right; */
+  left: 325px;
+  bottom: 15px;
 }

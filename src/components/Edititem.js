@@ -10,7 +10,8 @@ export default function Edititem({ onClose }) {
                     <Button
                         shape="circle"
                         icon='X'
-                        onClick={onClose} />
+                        onClick={onClose}
+                        className="close-edit" />
                     <div />
                     <Form.Item
                         name="type"
@@ -46,7 +47,10 @@ export default function Edititem({ onClose }) {
                         <Input placeholder="Note" />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">Submit</Button>
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                        >Submit</Button>
                     </Form.Item>
                 </div>
             </div>
