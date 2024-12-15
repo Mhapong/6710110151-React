@@ -3,8 +3,11 @@ import { Button, Table, Space, Tag, Popconfirm, Modal } from "antd"
 import { DeleteOutlined, BugOutlined, EditOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
 import Edititem from "./Edititem";
+import { useState, useEffect } from 'react';
 
 export default function TransactionList(props) {
+
+  const [showEdit, setShowEdit] = useState(false)
 
   const columns = [
     {
@@ -49,12 +52,10 @@ export default function TransactionList(props) {
             shape="circle"
             icon={<EditOutlined />}
             onClick={() => {
-              Modal.info({
-                title: "Edit",
-                content: JSON.stringify(record)
-              })
-            }} />
-          <Edititem />
+              setShowEdit(true)
+            }
+            } />
+          {showEdit && <Edititem onClose={() => setShowEdit(false)} />}
         </Space>
       ),
     },

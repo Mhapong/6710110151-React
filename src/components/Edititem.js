@@ -2,14 +2,15 @@ import "../App";
 import React from "react";
 import { Button, Form, Select, Input, InputNumber, X } from 'antd';
 
-export default function Edititem() {
+export default function Edititem({ onClose }) {
     return (
         <div layout="inline" className="edit-container">
             <div className="edit">
                 <div>
                     <Button
-                        icon='X' />
-
+                        shape="circle"
+                        icon='X'
+                        onClick={onClose} />
                     <div />
                     <Form.Item
                         name="type"
