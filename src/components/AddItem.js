@@ -38,7 +38,7 @@ export default function AddItem(props) {
         rules={[{ required: true }]}>
         <Input placeholder="Note" />
       </Form.Item>
-      
+
       <Form.Item>
         <Button type="primary" htmlType="submit">Add</Button>
       </Form.Item>

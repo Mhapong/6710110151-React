@@ -2,6 +2,7 @@ import React from "react"
 import { Button, Table, Space, Tag, Popconfirm, Modal } from "antd"
 import { DeleteOutlined, BugOutlined, EditOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
+import Edititem from "./Edititem";
 
 export default function TransactionList(props) {
 
@@ -53,6 +54,7 @@ export default function TransactionList(props) {
                 content: JSON.stringify(record)
               })
             }} />
+          <Edititem />
         </Space>
       ),
     },

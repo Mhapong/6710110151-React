@@ -45,57 +45,68 @@ function FinanceScreen() {
     }
   }
 
-  const handleNoteChanged = (id, note) => {
-    setTransactionData(
-      transactionData.map(transaction => {
-        transaction.note = transaction.id === id ? note : transaction.note;
-        return transaction
-      })
-    )
-  }
-
-  const handleRowDeleted = async (id) => {
+  const handleEditItem = async (item) => {
     try {
       setIsLoading(true)
-      await axios.delete(`${URL_TXACTIONS}/${id}`)
-      fetchItems()
+
+
     } catch (err) {
       console.log(err)
     } finally {
       setIsLoading(false)
     }
+
+    const handleNoteChanged = (id, note) => {
+      setTransactionData(
+        transactionData.map(transaction => {
+          transaction.note = transaction.id === id ? note : transaction.note;
+          return transaction
+        })
+      )
+    }
+
+    const handleRowDeleted = async (id) => {
+      try {
+        setIsLoading(true)
+        await axios.delete(`${URL_TXACTIONS}/${id}`)
+        fetchItems()
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    useEffect(() => {
+      fetchItems()
+    }, [])
+
+    useEffect(() => {
+      setSummaryAmount(transactionData.reduce(
+        (sum, transaction) => (
+          transaction.type === "income" ? sum + transaction.amount : sum - transaction.amount
+        ), 0)
+      )
+    }, [transactionData])
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Spin spinning={isLoading}>
+            <Typography.Title>
+              จำนวนเงินปัจจุบัน {summaryAmount} บาท
+            </Typography.Title>
+
+            <AddItem onItemAdded={handleAddItem} />
+            <Divider>บันทึก รายรับ - รายจ่าย</Divider>
+            <TransactionList
+              data={transactionData}
+              onNoteChanged={handleNoteChanged}
+              onRowDeleted={handleRowDeleted} />
+          </Spin>
+        </header>
+      </div>
+    );
   }
 
-  useEffect(() => {
-    fetchItems()
-  }, [])
-
-  useEffect(() => {
-    setSummaryAmount(transactionData.reduce(
-      (sum, transaction) => (
-        transaction.type === "income" ? sum + transaction.amount : sum - transaction.amount
-      ), 0)
-    )
-  }, [transactionData])
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Spin spinning={isLoading}>
-          <Typography.Title>
-            จำนวนเงินปัจจุบัน {summaryAmount} บาท
-          </Typography.Title>
-
-          <AddItem onItemAdded={handleAddItem} />
-          <Divider>บันทึก รายรับ - รายจ่าย</Divider>
-          <TransactionList
-            data={transactionData}
-            onNoteChanged={handleNoteChanged}
-            onRowDeleted={handleRowDeleted} />
-        </Spin>
-      </header>
-    </div>
-  );
-}
-
-export default FinanceScreen;
+  export default FinanceScreen;
