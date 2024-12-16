@@ -47,6 +47,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.363);
+    backdrop-filter: blur(2px) ;
 
 }
 .edit{
@@ -54,11 +55,21 @@
     padding: 2rem;
     background-color: white;
     width: 24.5em;
-    height: 16em;
+    height: 13em;
 }
 .close-edit{
   position:relative;
   /* align-items: right; */
   left: 325px;
   bottom: 15px;
+}
+.save-button{
+  position: relative;
+  left: 135px;
+  bottom: 40px;
+}
+.edit-form{
+  position: relative;
+  right: 15px;
+  bottom: 40px;
 }
