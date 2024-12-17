@@ -1,10 +1,24 @@
 import "../App";
-import React from "react";
-import { Button, Form, Select, Input, InputNumber, X } from 'antd';
+import React, { useEffect } from "react";
+import { Button, Form, Select, Input, InputNumber, X, Modal, } from 'antd';
 
-export default function Edititem({ onClose }) {
+const Edititem = ({ defaultValue, onClose, onSubmit }) => {
+    const [form] = Form.useForm();
+
+
+    useEffect(() => {
+        if (defaultValue) {
+            form.setFieldsValue({
+                id: defaultValue.id,
+                note: defaultValue.note,
+                amount: defaultValue.amount
+
+            });
+        }
+    }, [defaultValue, form]);
+
     return (
-        <div layout="inline" className="edit-container">
+        <Modal className="edit-container">
             <div className="edit">
                 <div>
                     <Button
@@ -32,6 +46,7 @@ export default function Edititem({ onClose }) {
                                         label: 'รายจ่าย',
                                     },
                                 ]}
+                                rules={[{ required: true }]}
                             />
                         </Form.Item>
                         <Form.Item
@@ -53,11 +68,14 @@ export default function Edititem({ onClose }) {
                             <Button
                                 type="primary"
                                 htmlType="submit"
+                            // onClick={saveEdit}
                             >Save</Button>
                         </Form.Item>
                     </div>
                 </div>
             </div>
-        </div>
+        </Modal>
     )
 }
+
+export default Edititem;

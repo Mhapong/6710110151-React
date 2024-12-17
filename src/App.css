@@ -7,21 +7,41 @@
   pointer-events: none;
 }
 
+.loginbg {
+  background-color: black;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+.login-screen {
+  text-align: center;
+  padding: 0;
+}
+
 .App-header {
-  /* background-color: #282c34; */
-  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  top: 0;
+  z-index: 1;
   font-size: calc(10px + 2vmin);
-  /* color: white; */
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+.App-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+  flex-direction: column;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
@@ -36,40 +56,81 @@
     transform: rotate(360deg);
   }
 }
-.edit-container{
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.363);
-    backdrop-filter: blur(2px) ;
-
+.edit-container {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.363);
+  backdrop-filter: blur(2px);
 }
-.edit{
-    border-radius: 7px;
-    padding: 2rem;
-    background-color: white;
-    width: 24.5em;
-    height: 13em;
+.edit {
+  border-radius: 7px;
+  padding: 2rem;
+  background-color: white;
+  width: 24.2em;
+  height: 13.5em;
 }
-.close-edit{
-  position:relative;
+.close-edit {
+  position: relative;
   /* align-items: right; */
-  left: 325px;
-  bottom: 15px;
+  left: 328px;
+  bottom: 22px;
 }
-.save-button{
+.save-button {
   position: relative;
   left: 135px;
   bottom: 40px;
 }
-.edit-form{
+.edit-form {
   position: relative;
   right: 15px;
   bottom: 40px;
+}
+.login-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #14274e;
+}
+.login {
+  position: relative;
+  border-radius: 7px;
+  padding: 2rem;
+  background-color: #f1f6f9;
+  width: 24.5em;
+  height: 8.2em;
+}
+.login-button {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.FinanceScreen {
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+}
+.FinanceTable {
+  z-index: 1;
+}
+
+.Finance-header {
+  position: sticky;
+  width: 100%;
+  height: 35px;
+  top: 0;
+  z-index: 1;
+  font-size: calc(10px + 3vmin);
+  color: white;
 }

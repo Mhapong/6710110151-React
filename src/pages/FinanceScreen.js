@@ -1,13 +1,15 @@
-import './App.css';
-import TransactionList from "./components/TransactionList"
+import '../App.css';
+import TransactionList from "../components/TransactionList"
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { Divider } from 'antd';
-import AddItem from './components/AddItem';
+import { Divider, Layout } from 'antd';
+import AddItem from '../components/AddItem';
 import { Spin, Typography } from 'antd';
 import axios from 'axios'
+import { Footer } from 'antd/es/layout/layout';
 
 const URL_TXACTIONS = '/api/txactions'
+const { Header } = Layout;
 
 function FinanceScreen() {
   const [summaryAmount, setSummaryAmount] = useState(0);
@@ -33,7 +35,7 @@ function FinanceScreen() {
       setIsLoading(true)
       const params = { ...item, action_datetime: dayjs() }
       const response = await axios.post(URL_TXACTIONS, { data: params })
-      const { id, attributes } = response.data.data
+      const { id, attributes } = response.data.data;
       setTransactionData([
         ...transactionData,
         { id: id, key: id, ...attributes }
@@ -47,6 +49,14 @@ function FinanceScreen() {
 
   const handleEditItem = async (item) => {
     try {
+      setIsLoading(true);
+      const response = await axios.put(URL_TXACTIONS, "/", item.id, { data: item });
+      fetchItems();
+      const { id, attributes } = response.data.data;
+      setTransactionData([
+        ...transactionData,
+        { id: id, key: id, ...attributes }
+      ]);
       setIsLoading(true)
     } catch (err) {
       console.log(err)
@@ -88,21 +98,26 @@ function FinanceScreen() {
   }, [transactionData])
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div >
+      <div >
         <Spin spinning={isLoading}>
-          <Typography.Title>
-            จำนวนเงินปัจจุบัน {summaryAmount} บาท
-          </Typography.Title>
-
           <AddItem onItemAdded={handleAddItem} />
-          <Divider>บันทึก รายรับ - รายจ่าย</Divider>
-          <TransactionList
-            data={transactionData}
-            onNoteChanged={handleNoteChanged}
-            onRowDeleted={handleRowDeleted} />
         </Spin>
-      </header>
+      </div>
+      <body>
+        <Divider>บันทึก รายรับ - รายจ่าย</Divider>
+        <TransactionList
+          data={transactionData}
+          onNoteChanged={handleNoteChanged}
+          onRowDeleted={handleRowDeleted}
+          onEditItem={handleEditItem}
+          className='FinanceTable' />
+      </body>
+      <Footer className='App-footer'>
+        <Typography.Text strong >
+          จำนวนเงินปัจจุบัน {summaryAmount} บาท
+        </Typography.Text>
+      </Footer>
     </div>
   );
 }

@@ -37,7 +37,7 @@ export default function TransactionList(props) {
               shape="circle"
               icon={<DeleteOutlined />} />
           </Popconfirm>
-          <Button
+          {/* <Button
             type="primary"
             shape="circle"
             icon={<BugOutlined />}
@@ -46,7 +46,7 @@ export default function TransactionList(props) {
                 title: "Debug",
                 content: JSON.stringify(record)
               })
-            }} />
+            }} /> */}
           <Button
             type="primary"
             shape="circle"
@@ -63,7 +63,9 @@ export default function TransactionList(props) {
 
   return (
     <>
-      <Table columns={columns} dataSource={props.data} />
+      <Table columns={columns} dataSource={props.data}
+        rowKey={props.id}
+        bordered />
     </>
   )
 }

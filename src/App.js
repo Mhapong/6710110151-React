@@ -1,24 +1,60 @@
 import './App.css';
 import axios from 'axios'
 import { useState } from 'react';
-import LoginScreen from './LoginScreen';
-import FinanceScreen from './FinanceScreen';
+import LoginScreen from './pages/LoginScreen';
+import FinanceScreen from './pages/FinanceScreen';
+import { Layout } from 'antd';
+import { Link, Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:1337"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  }
 
-  const handleLoginSuccess = () => setIsAuthenticated(true)
-    
   return (
-    <div className="App"> 
-      <header className="App-header">
-        {!isAuthenticated  && <LoginScreen onLoginSuccess={handleLoginSuccess} />}
-        {isAuthenticated && <FinanceScreen/>}
-      </header>
+    // <div>
+    //   <body className="App-Header">
+    //     <div className='login-container'>
+    //       <div className='login'>
+    //         {!isAuthenticated && <LoginScreen onLoginSuccess={handleLoginSuccess} />}
+    //         {isAuthenticated && <FinanceScreen />}
+    //       </div>
+    //     </div>
+    //   </body>
+    // </div>
+    <div>
+      <Router>
+        <Routes>
+          <Route
+            path='/'
+            element={isAuthenticated ? (
+              <Navigate to="/FinanceScreen" />
+            ) : (
+              < LoginScreen onLoginSuccess={handleLoginSuccess} />
+            )
+            }
+          />
+
+          <Route
+            path='/FinanceScreen'
+            element={
+              isAuthenticated ? (
+                <FinanceScreen />
+              ) : (
+                <Navigate to='/' />
+              )
+            }
+          />
+
+
+        </Routes>
+      </Router>
     </div>
+
   );
 }
 
