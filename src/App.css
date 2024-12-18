@@ -104,17 +104,20 @@
   background-color: #14274e;
 }
 .login {
-  position: relative;
+  position: fixed;
   border-radius: 7px;
   padding: 2rem;
-  background-color: #f1f6f9;
+  background-color: #ffffff;
   width: 24.5em;
-  height: 8.2em;
+  height: 11.2em;
 }
 .login-button {
-  max-width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+  position: fixed;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 150px;
 }
 .FinanceScreen {
   z-index: 1;
@@ -153,5 +156,27 @@
 .table-container {
   margin-left: 25px;
   margin-right: 25px;
+  align-items: center;
+}
+.center-rememberme {
+  position: absolute;
+  top: 135px;
+  left: 165px;
+}
+.signuplink {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+}
+.errormsg {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 450px;
+  padding: 10px;
+  margin: auto;
+  justify-content: center;
   align-items: center;
 }

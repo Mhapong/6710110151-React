@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
-import { Button, Form, Input, Alert } from 'antd';
-import axios from 'axios'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
+import { Button, Form, Input, Alert, Checkbox } from 'antd';
+import axios from 'axios';
+import { getOverflowOptions } from 'antd/es/_util/placements';
+
 
 const URL_AUTH = "/api/auth/local"
 
@@ -11,6 +13,7 @@ export default function LoginScreen(props) {
 
   const [isLoading, setIsLoading] = useState(false)
   const [errMsg, setErrMsg] = useState(null)
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = async (formData) => {
     try {
@@ -27,17 +30,15 @@ export default function LoginScreen(props) {
   }
 
   return (
+
     <div className='login-container'>
       <div className='login'>
         <header>
+
           <Form
             onFinish={handleLogin}
-            autoComplete="off">
-            {errMsg &&
-              <Form.Item>
-                <Alert message={errMsg} type="error" />
-              </Form.Item>
-            }
+            autoComplete="off"
+            style={getOverflowOptions()}>
 
             <Form.Item
               label="Username"
@@ -64,12 +65,21 @@ export default function LoginScreen(props) {
                 </Button>
               </Form.Item>
             </div>
-            <div className='login-button'>
-              <Link to={"/sign-up"}>
+
+            <Checkbox value={rememberMe} className='center-rememberme'>Remember me</Checkbox>
+
+            <div className='signuplink'>
+              <Link Link to={"/sign-up"} >
                 Don't have an account? Sign up
               </Link>
             </div>
+
           </Form>
+          <div className='errormsg'>
+            {errMsg &&
+              <Alert message={errMsg} type="error" />
+            }
+          </div>
         </header>
       </div>
     </div>
