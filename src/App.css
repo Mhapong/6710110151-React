@@ -79,8 +79,8 @@
 .close-edit {
   position: relative;
   /* align-items: right; */
-  left: 328px;
-  bottom: 22px;
+  left: 226px;
+  bottom: 20px;
 }
 .save-button {
   position: relative;
@@ -148,4 +148,10 @@
 
 .Additempos {
   right: 20px;
+}
+
+.table-container {
+  margin-left: 25px;
+  margin-right: 25px;
+  align-items: center;
 }

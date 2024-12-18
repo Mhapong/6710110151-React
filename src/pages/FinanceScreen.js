@@ -11,7 +11,6 @@ import { Navigate } from 'react-router-dom';
 import Modal from '../components/Edititem';
 
 const URL_TXACTIONS = '/api/txactions'
-const { Header } = Layout;
 
 function FinanceScreen() {
   const [summaryAmount, setSummaryAmount] = useState(0);

@@ -43,13 +43,13 @@ const Edititem = ({ defaultValue, closeModal, onSave }) => {
 
             ]}>
             <div>
-                <div className="close-edit">
+                {/* <div className="close-edit">
                     <Button
                         shape="circle"
                         icon='X'
                         onClick={closeModal}
                         className="close-edit" />
-                </div>
+                </div> */}
                 <Form>
                     <Form.Item
                         name="type"

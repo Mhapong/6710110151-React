@@ -33,7 +33,7 @@ export default function TransactionList(props) {
     },
     {
       title: "Action",
-      key: "action",
+      key: "amount",
       render: (record) => (
         <Space size="middle">
           <Button
@@ -71,12 +71,14 @@ export default function TransactionList(props) {
   ]
 
   return (
-    <>
-      <Table
-        columns={columns}
-        dataSource={props.data}
-        rowKey="id"
-        bordered />
-    </>
+    <div className="table-container">
+      <>
+        <Table
+          dataSource={props.data}
+          columns={columns}
+          rowKey="id"
+          bordered />
+      </>
+    </div>
   )
 }
