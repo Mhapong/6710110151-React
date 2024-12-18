@@ -27,49 +27,51 @@ export default function LoginScreen(props) {
   }
 
   return (
-    <div>
-      <header>
-        <Form
-          onFinish={handleLogin}
-          autoComplete="off">
-          {errMsg &&
-            <Form.Item>
-              <Alert message={errMsg} type="error" />
-            </Form.Item>
-          }
+    <div className='login-container'>
+      <div className='login'>
+        <header>
+          <Form
+            onFinish={handleLogin}
+            autoComplete="off">
+            {errMsg &&
+              <Form.Item>
+                <Alert message={errMsg} type="error" />
+              </Form.Item>
+            }
 
-          <Form.Item
-            label="Username"
-            name="identifier"
-            rules={[{ required: true, }]}>
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[{ required: true },]}>
-            <Input.Password />
-          </Form.Item>
-          <div className='login-button'>
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                loading={isLoading}
-                shape='round'
-                size='large'>
-                Log in
-              </Button>
+            <Form.Item
+              label="Username"
+              name="identifier"
+              rules={[{ required: true, }]}>
+              <Input />
             </Form.Item>
-          </div>
-          <div className='login-button'>
-            <Link to={"/sign-up"}>
-              Don't have an account? Sign up
-            </Link>
-          </div>
-        </Form>
-      </header>
+
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[{ required: true },]}>
+              <Input.Password />
+            </Form.Item>
+            <div className='login-button'>
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  shape='round'
+                  size='large'>
+                  Log in
+                </Button>
+              </Form.Item>
+            </div>
+            <div className='login-button'>
+              <Link to={"/sign-up"}>
+                Don't have an account? Sign up
+              </Link>
+            </div>
+          </Form>
+        </header>
+      </div>
     </div>
   )
 }

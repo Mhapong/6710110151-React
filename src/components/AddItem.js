@@ -3,7 +3,7 @@ import { Button, Form, Select, Input, InputNumber } from 'antd';
 export default function AddItem(props) {
 
   return (
-    <Form className="Finance-header" layout="inline" onFinish={props.onItemAdded}>
+    <Form layout="inline" onFinish={props.onItemAdded}>
       <Form.Item
         name="type"
         label="ชนิด"

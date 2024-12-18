@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Form, Input, Alert } from 'antd';
 import axios from 'axios'
 
-function Signup() {
+function signup() {
     return (
         <div>
-            Signup
+            Sign-up
         </div>
     )
 }
-export default Signup;
+export default signup;

@@ -3,8 +3,10 @@ import axios from 'axios'
 import { useState } from 'react';
 import LoginScreen from './pages/LoginScreen';
 import FinanceScreen from './pages/FinanceScreen';
+import signup from './pages/SignupScreen';
 import { Layout } from 'antd';
 import { Link, Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Edititem from './components/Edititem';
 
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:1337"
@@ -50,6 +52,17 @@ function App() {
             }
           />
 
+          <Route
+            path='/sign-up'
+            element={
+              <signup />
+            } />
+
+          <Route
+            path='/Edit-item'
+            element={
+              <Edititem />
+            } />
 
         </Routes>
       </Router>
