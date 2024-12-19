@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom'
 import { Button, Form, Input, Alert, Checkbox } from 'antd';
@@ -14,6 +14,19 @@ export default function LoginScreen(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [errMsg, setErrMsg] = useState(null)
   const [rememberMe, setRememberMe] = useState(false);
+  const redirectUser = path => {
+    <Navigate to={path} />;
+  };
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('identifier');
+    const savedPassword = localStorage.getItem('password');
+    setUsername(savedUsername);
+    setPassword(savedPassword)
+    setRememberMe(true);
+  }, [])
 
   const handleLogin = async (formData) => {
     try {
@@ -22,6 +35,13 @@ export default function LoginScreen(props) {
       const response = await axios.post(URL_AUTH, { ...formData })
       const token = response.data.jwt
       axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }
+      if (rememberMe) {
+        localStorage.getItem('identifier', username);
+        localStorage.getItem('password', password);
+      } else {
+        localStorage.removeItem('identifier');
+        localStorage.removeItem('password');
+      }
       props.onLoginSuccess();
     } catch (err) {
       console.log(err)
@@ -66,7 +86,8 @@ export default function LoginScreen(props) {
               </Form.Item>
             </div>
 
-            <Checkbox value={rememberMe} className='center-rememberme'>Remember me</Checkbox>
+            <Checkbox checked={rememberMe} className='center-rememberme'
+              onChange={(data) => setRememberMe(data.target.checked)}>Remember me</Checkbox>
 
             <div className='signuplink'>
               <Link Link to={"/sign-up"} >

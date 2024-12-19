@@ -117,31 +117,27 @@ function FinanceScreen() {
   }, [transactionData])
 
   return (
-    <div >
-      <div className="Finance-header">
-
-      </div>
-      <div>
-        <Spin spinning={isLoading}>
-          <Typography.Text strong ></Typography.Text>
-          <Divider><h1>บันทึก รายรับ - รายจ่าย</h1></Divider>
-          <TransactionList
-            data={transactionData}
-            onNoteChanged={handleNoteChanged}
-            onRowDeleted={handleRowDeleted}
-            onRowEdited={openModal}
-            className='FinanceTable'
+    <div className='financebg'>
+      <Spin spinning={isLoading}>
+        <Typography.Text strong ></Typography.Text>
+        <Divider><h1>บันทึก รายรับ - รายจ่าย</h1></Divider>
+        <TransactionList
+          data={transactionData}
+          onNoteChanged={handleNoteChanged}
+          onRowDeleted={handleRowDeleted}
+          onRowEdited={openModal}
+          className='FinanceTable'
+        />
+        {isModalVisible && (
+          <Modal
+            defaultValue={editingRecord}
+            closeModal={closeModal}
+            onSave={handleRowEdited}
           />
-          {isModalVisible && (
-            <Modal
-              defaultValue={editingRecord}
-              closeModal={closeModal}
-              onSave={handleRowEdited}
-            />
-          )}
+        )}
 
-        </Spin>
-      </div>
+      </Spin>
+
       <Footer className='Finance-footer' >
         <Spin spinning={isLoading}>
           <Typography.Text strong >

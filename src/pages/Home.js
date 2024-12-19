@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 
 const Home = () => {
     return (
-        <div>
+        <div className="center">
             <Form>
                 <h1>
                     Welcome to Finance checker

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button, Form, Input, Alert, Layout, } from 'antd';
 import { FormGroup, Toast, } from "reactstrap";
 import axios from 'axios'
@@ -22,7 +22,7 @@ function Register() {
                         hideProgressBar: true
                     });
                     setUser(initialUser);
-                    navigate("/")
+                    navigate('/login')
                 }
                 console.log(data);
             }
