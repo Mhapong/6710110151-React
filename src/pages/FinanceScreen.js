@@ -2,13 +2,14 @@ import '../App.css';
 import TransactionList from "../components/TransactionList"
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { Button, Divider, Layout } from 'antd';
+import { Button, Divider, Layout, Menu } from 'antd';
 import AddItem from '../components/AddItem';
 import { Spin, Typography } from 'antd';
 import axios from 'axios'
 import { Footer } from 'antd/es/layout/layout';
 import { Navigate } from 'react-router-dom';
 import Modal from '../components/Edititem';
+import Navbar from '../components/Navbar';
 
 const URL_TXACTIONS = '/api/txactions'
 
@@ -118,6 +119,7 @@ function FinanceScreen() {
 
   return (
     <div className='financebg'>
+      <Navbar />
       <Spin spinning={isLoading}>
         <Typography.Text strong ></Typography.Text>
         <Divider><h1>บันทึก รายรับ - รายจ่าย</h1></Divider>

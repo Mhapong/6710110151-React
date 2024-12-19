@@ -107,7 +107,7 @@
   position: fixed;
   border-radius: 7px;
   padding: 2rem;
-  background-color: #f5efe7;
+  background-color: #ffffff;
   width: 24.5em;
   height: 11.2em;
 }
@@ -128,17 +128,6 @@
   z-index: 1;
 }
 
-.Finance-header {
-  position: sticky;
-  display: flex;
-  width: 100%;
-  height: 20px;
-  top: 0;
-  z-index: 1;
-  font-size: calc(10px + 3vmin);
-  color: rgb(0, 0, 0);
-}
-
 .Finance-footer {
   position: absolute;
   width: 100%;
@@ -146,7 +135,7 @@
   z-index: 1;
   font-size: calc(10px + 2vmin);
   color: rgb(255, 255, 255);
-  background-color: #f5efe7;
+  background-color: #ffffff;
 }
 
 .Additempos {
@@ -188,8 +177,7 @@
   height: 100vh;
 }
 .financebg {
-  color: #213555;
-  background-color: #213555;
+  background-color: #ffffff;
   width: 100%;
   height: 100%;
 }

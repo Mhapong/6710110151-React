@@ -1,5 +1,7 @@
 import React from "react";
 
+useEffect()
+
 const profile = () => {
     return <div>
         <h1>

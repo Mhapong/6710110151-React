@@ -33,6 +33,7 @@ export default function LoginScreen(props) {
       setIsLoading(true)
       setErrMsg(null)
       const response = await axios.post(URL_AUTH, { ...formData })
+      console.log(response)
       const token = response.data.jwt
       axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }
       if (rememberMe) {

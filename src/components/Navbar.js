@@ -1,17 +1,33 @@
 import React from "react";
 import './Navbar.css';
+import { Menu } from "antd";
 import { Link } from "react-router-dom";
-import LoginScreen from "../pages/LoginScreen";
-import Home from "../pages/Home";
+import { HomeFilled } from '@ant-design/icons';
+
+const items = [
+    {
+        key: 'home',
+        icon: <HomeFilled />,
+        label: (
+            <Link Link to={"/"}>
+                Home
+            </Link>
+        ),
+    },
+    {
+        key: 'Sign Out',
+        label: (
+            <Link Link to={"/login"}>
+                Sign out
+            </Link>
+        ),
+    },
+];
 
 function Navbar() {
     return (
-        <div className="navigation-menu">
-            <ol>
-                <li><Link to={LoginScreen}>Login</Link></li>
-                <li><Link to={Home}>Logout</Link></li>
-            </ol>
-        </div>
-    )
+        <Menu mode="horizontal" items={items} />
+    );
 }
+
 export default Navbar;
