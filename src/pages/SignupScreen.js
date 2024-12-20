@@ -1,17 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom'
-import { Button, Form, Input, Alert, Layout, } from 'antd';
-import { FormGroup, Toast, } from "reactstrap";
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Button, Form, Input, Layout, } from 'antd';
+import { Toast, } from "reactstrap";
 import axios from 'axios'
 import { storeUser } from '../helpers';
 import { getOverflowOptions } from 'antd/es/_util/placements';
 
-function Register() {
+function Register(props) {
     const initialUser = { identifier: "", password: "" };
     const [errMsg, setErrMsg] = useState(null)
     const [user, setUser] = useState(initialUser)
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate()
 
     const signup = async (formData) => {
         try {
@@ -28,7 +29,9 @@ function Register() {
                         hideProgressBar: true
                     });
                     setUser(initialUser);
+                    props.SignupSuccess();
                 }
+                navigate('/login')
                 console.log(data);
             }
         } catch (error) {
@@ -47,7 +50,7 @@ function Register() {
         }));
     };
     return (
-        <Layout>
+        <Layout className='login'>
             <h1>
                 Sign-up
             </h1>
@@ -90,7 +93,11 @@ function Register() {
                         Sign up
                     </Button>
                 </Form.Item>
+                <Link Link to={"/login"} >
+                    Already have an account? Sign in
+                </Link>
             </Form>
+
         </Layout>
     )
 }

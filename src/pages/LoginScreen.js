@@ -37,8 +37,8 @@ export default function LoginScreen(props) {
       const token = response.data.jwt
       axios.defaults.headers.common = { 'Authorization': `bearer ${token}` }
       if (rememberMe) {
-        localStorage.getItem('identifier', username);
-        localStorage.getItem('password', password);
+        localStorage.getItem(formData.identifier);
+        localStorage.getItem(formData.password);
       } else {
         localStorage.removeItem('identifier');
         localStorage.removeItem('password');
