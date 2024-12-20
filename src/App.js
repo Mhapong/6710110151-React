@@ -6,13 +6,19 @@ import FinanceScreen from './pages/FinanceScreen';
 import Register from './pages/SignupScreen';
 import { Layout } from 'antd';
 import { Link, Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import profile from './pages/Profile';
+import Profile from './pages/Profile';
 import Home from './pages/Home';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:1337"
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [signedUp, setSignedUp] = useState(false);
+
+  const handleSignup = () => {
+    setSignedUp(true);
+  }
+
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   }
@@ -45,21 +51,24 @@ function App() {
               isAuthenticated ? (
                 <FinanceScreen />
               ) : (
-                <Navigate to='/' />
+                <Navigate to='/login' />
               )
             }
           />
 
           <Route
             path='/sign-up'
-            element={
-              <Register />
+            element={signedUp ? (
+              <Navigate to='/login' />
+            ) : (
+              <Register SignupSuccess={handleSignup} />
+            )
             } />
 
           <Route
-            path='/profile'
+            path='/profile-page'
             element={
-              <profile />
+              <Profile />
             } />
 
         </Routes>

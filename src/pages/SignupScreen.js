@@ -1,36 +1,42 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Button, Form, Input, Alert, Layout, } from 'antd';
 import { FormGroup, Toast, } from "reactstrap";
 import axios from 'axios'
 import { storeUser } from '../helpers';
+import { getOverflowOptions } from 'antd/es/_util/placements';
 
 function Register() {
     const initialUser = { identifier: "", password: "" };
-    const navigate = useNavigate();
+    const [errMsg, setErrMsg] = useState(null)
     const [user, setUser] = useState(initialUser)
+    const [isLoading, setIsLoading] = useState(false)
 
-    const signup = async () => {
+    const signup = async (formData) => {
         try {
+            setIsLoading(true)
             const url = "http://localhost:1337/api/auth/local/register";
-            if (user.username && user.email && user.password) {
-                const data = await axios.post(url, user);
+            if (formData) {
+                const data = await axios.post(url, {
+                    ...formData
+                });
+                console.log(data)
                 if (data.jwt) {
                     storeUser(data)
                     Toast.success('Logged in successfully!!', {
                         hideProgressBar: true
                     });
                     setUser(initialUser);
-                    navigate('/login')
                 }
                 console.log(data);
             }
         } catch (error) {
             console.log({ error })
-            Toast.error(error.message, {
-                hideProgressBar: true,
-            });
+            setErrMsg(error.message)
+                ;
+        } finally {
+            setIsLoading(false)
         }
     };
     const handleUserChange = ({ target }) => {
@@ -45,38 +51,46 @@ function Register() {
             <h1>
                 Sign-up
             </h1>
-            <FormGroup>
-                <Input
-                    type='text'
-                    name='identifier'
-                    value={user.identifier}
-                    onChange={handleUserChange}
-                    placeholder='Enter your username'
-                />
-            </FormGroup>
+            <Form
+                onFinish={signup}
+                autoComplete="off"
+                style={getOverflowOptions()}>
 
-            <FormGroup>
-                <Input
+                <Form.Item
                     type='text'
-                    name='email'
-                    value={user.email}
-                    onChange={handleUserChange}
-                    placeholder='Enter your email'
-                />
-            </FormGroup>
+                    label='Username'
+                    name="username"
+                    value={user.username}
+                    rules={[{ required: true, }]}>
+                    <Input />
+                </Form.Item>
 
-            <FormGroup>
-                <Input
+                <Form.Item
                     type='text'
+                    label='Email'
+                    name="email"
+                    rules={[{ required: true, }]}>
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    type='text'
+                    label='password'
                     name='password'
-                    value={user.password}
-                    onChange={handleUserChange}
-                    placeholder='Enter your password'
-                />
-            </FormGroup>
-            <Button
-                type='primary'
-                onClick={signup}>Sign up</Button>
+                    rules={[{ required: true, }]}>
+                    <Input />
+                </Form.Item>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={isLoading}
+                        shape='round'
+                        size='large'>
+                        Sign up
+                    </Button>
+                </Form.Item>
+            </Form>
         </Layout>
     )
 }

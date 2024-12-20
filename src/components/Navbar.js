@@ -15,7 +15,15 @@ const items = [
         ),
     },
     {
-        key: 'Sign Out',
+        key: 'Profile',
+        label: (
+            <Link Link to={"/profile-page"}>
+                Profile
+            </Link>
+        ),
+    },
+    {
+        key: 'Sign-Out',
         label: (
             <Link Link to={"/login"}>
                 Sign out

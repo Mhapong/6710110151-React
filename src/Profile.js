@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Layout, } from "antd";
 
 
 
-export default function Profile() {
+const Profile = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -16,9 +15,10 @@ export default function Profile() {
 
     console.log(user);
     if (!user) return;
-    return (<Layout>
+    return <div>
         <h1>
             Profile
         </h1>
-    </Layout>);
+    </div>
 };
+export default Profile;

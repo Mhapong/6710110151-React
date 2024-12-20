@@ -2,7 +2,7 @@ import '../App.css';
 import TransactionList from "../components/TransactionList"
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { Button, Divider, Layout, Menu } from 'antd';
+import { Button, Divider, Layout, Menu, Form } from 'antd';
 import AddItem from '../components/AddItem';
 import { Spin, Typography } from 'antd';
 import axios from 'axios'
@@ -118,7 +118,7 @@ function FinanceScreen() {
   }, [transactionData])
 
   return (
-    <div className='financebg'>
+    <Layout className='financebg'>
       <Navbar />
       <Spin spinning={isLoading}>
         <Typography.Text strong ></Typography.Text>
@@ -140,19 +140,14 @@ function FinanceScreen() {
 
       </Spin>
 
-      <Footer className='Finance-footer' >
+      <Footer className='Finance-footer'>
         <Spin spinning={isLoading}>
-          <Typography.Text strong >
-            จำนวนเงินปัจจุบัน {summaryAmount} บาท
-          </Typography.Text>
-          <div className='Additempos'>
-
-            <AddItem onItemAdded={handleAddItem} />
-
-          </div>
+          <Form>
+            จำนวนเงินปัจจุบัน {summaryAmount} บาท <AddItem onItemAdded={handleAddItem} />
+          </Form>
         </Spin>
       </Footer>
-    </div>
+    </Layout>
   );
 }
 

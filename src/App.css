@@ -129,11 +129,12 @@
 }
 
 .Finance-footer {
-  position: absolute;
+  position: sticky;
   width: 100%;
   bottom: 0;
   z-index: 1;
   font-size: calc(10px + 2vmin);
+  align-items: end;
   color: rgb(255, 255, 255);
   background-color: #ffffff;
 }
