@@ -134,8 +134,9 @@
   bottom: 0;
   z-index: 1;
   font-size: calc(10px + 2vmin);
+  display: inline-block;
   align-items: end;
-  color: rgb(255, 255, 255);
+  border-top: 0.2px solid #ececec;
   background-color: #ffffff;
 }
 

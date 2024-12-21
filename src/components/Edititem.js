@@ -40,13 +40,6 @@ const Edititem = ({ defaultValue, closeModal, onSave }) => {
             ]}
         >
             <div>
-                {/* <div className="close-edit">
-                    <Button
-                        shape="circle"
-                        icon='X'
-                        onClick={closeModal}
-                        className="close-edit" />
-                </div> */}
                 <Form form={form} layout="vertical">
                     <Form.Item name="id" label="ID" hidden>
                         <Input disabled />

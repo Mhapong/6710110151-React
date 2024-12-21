@@ -2,14 +2,12 @@ import '../App.css';
 import TransactionList from "../components/TransactionList"
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { Button, Divider, Layout, Menu, Form } from 'antd';
+import { Divider, Typography, Spin, } from 'antd';
 import AddItem from '../components/AddItem';
-import { Spin, Typography } from 'antd';
 import axios from 'axios'
 import { Footer } from 'antd/es/layout/layout';
-import { Navigate } from 'react-router-dom';
 import Modal from '../components/Edititem';
-import Navbar from '../components/Navbar';
+
 
 const URL_TXACTIONS = '/api/txactions'
 
@@ -138,10 +136,7 @@ function FinanceScreen() {
 
       <Footer className='Finance-footer'>
         <Spin spinning={isLoading}>
-          <Form>
-            จำนวนเงินปัจจุบัน {summaryAmount} บาท
-
-          </Form>
+          <Typography.Text level={1}>จำนวนเงินปัจจุบัน {summaryAmount} บาท</Typography.Text>
           <AddItem onItemAdded={handleAddItem} />
         </Spin>
       </Footer>

@@ -41,7 +41,7 @@ const EditProfile = ({ defaultValue, closeModal, onSave }) => {
         >
             <div>
                 <Form
-                    onFinish={handleProfileSave}
+                    form={form}
                     autoComplete="off"
                 >
 

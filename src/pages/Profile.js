@@ -32,13 +32,14 @@ const Profile = () => {
 
     const handleEditSave = async (updatedData) => {
         try {
-            const response = await axios.put(`auth/user/${updatedData.id}`, { data: updatedData });
-            console.log(updatedData)
+            const UserEdited = {
+                email: updatedData.email,
+                username: updatedData.username
+
+            }
+            await axios.put(`api/users/${updatedData.id}`, UserEdited);
             getUser();
-            console.log(response)
-            const { id, attributes } = response.data.data;
-            console.log(attributes)
-            setUser([...user, { id: id, ...attributes }])
+
         }
         catch (err) {
             console.error("Error: Can't update user data...", err)
@@ -51,9 +52,7 @@ const Profile = () => {
     return (
         <Layout className="profileCardcontainer" >
             <div className="profileCard">
-                <Divider style={{ fontSize: "30px" }}>
-                    Profile
-                </Divider>
+
                 <div
                     style={{
                         background: colorBgContainer,
@@ -61,7 +60,9 @@ const Profile = () => {
                         padding: 24,
                         borderRadius: borderRadiusLG,
                     }}
-                >
+                ><Divider style={{ fontSize: "30px" }}>
+                        Profile
+                    </Divider>
                     <Avatar size={128} icon={<UserOutlined />} />
                     <Card
                         hoverable
