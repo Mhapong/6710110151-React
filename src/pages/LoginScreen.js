@@ -14,9 +14,7 @@ export default function LoginScreen(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [errMsg, setErrMsg] = useState(null)
   const [rememberMe, setRememberMe] = useState(false);
-  const redirectUser = path => {
-    <Navigate to={path} />;
-  };
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -87,7 +85,7 @@ export default function LoginScreen(props) {
               </Form.Item>
             </div>
 
-            <Checkbox checked={rememberMe} className='center-rememberme'
+            <Checkbox check={rememberMe} className='center-rememberme'
               onChange={(data) => setRememberMe(data.target.checked)}>Remember me</Checkbox>
 
             <div className='signuplink'>

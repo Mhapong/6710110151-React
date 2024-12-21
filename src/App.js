@@ -5,9 +5,10 @@ import LoginScreen from './pages/LoginScreen';
 import FinanceScreen from './pages/FinanceScreen';
 import Register from './pages/SignupScreen';
 import { Layout } from 'antd';
-import { Link, Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
+import Navbar from './components/Navbar';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL || "http://localhost:1337"
 
@@ -19,61 +20,71 @@ function App() {
     setSignedUp(true);
   }
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  }
+
+
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   }
 
   return (
 
-    <div>
-      <Router>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Home />
-            }
-          />
+    <BrowserRouter>
+      <div>
+        {isAuthenticated ? (<Navbar onLogout={handleLogout} className="Navbar" />
+        ) : (
+          <Navigate to='/login' />)}
+      </div>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <Home />
+          }
+        />
 
-          <Route
-            path='/login'
-            element={isAuthenticated ? (
-              <Navigate to="/FinanceScreen" />
+        <Route
+          path='/login'
+          element={isAuthenticated ? (
+            <Navigate to="/FinanceScreen" />
+          ) : (
+            < LoginScreen onLoginSuccess={handleLoginSuccess} />
+          )
+          }
+        />
+
+        <Route
+          path='/FinanceScreen'
+          element={
+            isAuthenticated ? (
+              <FinanceScreen />
             ) : (
-              < LoginScreen onLoginSuccess={handleLoginSuccess} />
-            )
-            }
-          />
-
-          <Route
-            path='/FinanceScreen'
-            element={
-              isAuthenticated ? (
-                <FinanceScreen />
-              ) : (
-                <Navigate to='/login' />
-              )
-            }
-          />
-
-          <Route
-            path='/sign-up'
-            element={signedUp ? (
               <Navigate to='/login' />
-            ) : (
-              <Register SignupSuccess={handleSignup} />
             )
-            } />
+          }
+        />
 
-          <Route
-            path='/profile-page'
-            element={
-              <Profile />
-            } />
+        <Route
+          path='/sign-up'
+          element={signedUp ? (
+            <Navigate to='/login' />
+          ) : (
+            <Register SignupSuccess={handleSignup} />
+          )
+          } />
 
-        </Routes>
-      </Router>
-    </div>
+        <Route
+          path='/profile-page'
+          element={isAuthenticated ? (
+            < Profile />
+          ) : (
+            <Navigate to='/login' />)
+          } />
+      </Routes>
+
+    </BrowserRouter>
 
   );
 }

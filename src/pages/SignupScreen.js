@@ -42,13 +42,7 @@ function Register(props) {
             setIsLoading(false)
         }
     };
-    const handleUserChange = ({ target }) => {
-        const { name, value } = target;
-        setUser((currentUser) => ({
-            ...currentUser,
-            [name]: value,
-        }));
-    };
+
     return (
         <Layout className='login'>
             <h1>

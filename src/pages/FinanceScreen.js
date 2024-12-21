@@ -61,9 +61,6 @@ function FinanceScreen() {
     setEditingRecord(null);
   }
 
-  const handleEditClick = () => {
-    Navigate('/Edit-item')
-  }
 
   const handleRowEdited = async (item) => {
     try {
@@ -118,8 +115,7 @@ function FinanceScreen() {
   }, [transactionData])
 
   return (
-    <Layout className='financebg'>
-      <Navbar />
+    <div className='financebg'>
       <Spin spinning={isLoading}>
         <Typography.Text strong ></Typography.Text>
         <Divider><h1>บันทึก รายรับ - รายจ่าย</h1></Divider>
@@ -143,11 +139,13 @@ function FinanceScreen() {
       <Footer className='Finance-footer'>
         <Spin spinning={isLoading}>
           <Form>
-            จำนวนเงินปัจจุบัน {summaryAmount} บาท <AddItem onItemAdded={handleAddItem} />
+            จำนวนเงินปัจจุบัน {summaryAmount} บาท
+
           </Form>
+          <AddItem onItemAdded={handleAddItem} />
         </Spin>
       </Footer>
-    </Layout>
+    </div>
   );
 }
 
