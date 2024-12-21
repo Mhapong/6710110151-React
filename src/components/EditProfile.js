@@ -8,19 +8,20 @@ const EditProfile = ({ defaultValue, closeModal, onSave }) => {
     useEffect(() => {
         if (defaultValue) {
             form.setFieldsValue({
+                id: defaultValue.id,
                 email: defaultValue.email,
                 username: defaultValue.username,
             });
         }
     }, [defaultValue, form]);
 
-    const handleSave = () => {
+    const handleProfileSave = () => {
         form.validateFields().then((values) => {
             const updatedRecord = {
                 ...defaultValue,
                 ...values,
             };
-            console.log("Updated Record:", updatedRecord);
+            // console.log("Updated Record:", updatedRecord);
             onSave(updatedRecord);
             closeModal();
         });
@@ -33,14 +34,14 @@ const EditProfile = ({ defaultValue, closeModal, onSave }) => {
             open={true}
             onCancel={closeModal}
             footer={[
-                <Button type="primary" key="submit" onClick={handleSave}>
+                <Button type="primary" key="submit" onClick={handleProfileSave}>
                     Save
                 </Button>,
             ]}
         >
             <div>
                 <Form
-                    onFinish={handleSave}
+                    onFinish={handleProfileSave}
                     autoComplete="off"
                 >
 

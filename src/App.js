@@ -33,9 +33,8 @@ function App() {
 
     <BrowserRouter>
       <div>
-        {isAuthenticated ? (<Navbar onLogout={handleLogout} className="Navbar" />
-        ) : (
-          <Navigate to='/login' />)}
+        {<Navbar onLogout={handleLogout} className="Navbar" />
+        }
       </div>
       <Routes>
         <Route

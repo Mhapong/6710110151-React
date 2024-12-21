@@ -44,7 +44,7 @@ function Register(props) {
     };
 
     return (
-        <Layout className='login'>
+        <Layout className='profileCardcontainer'>
             <h1>
                 Sign-up
             </h1>
